@@ -34,7 +34,7 @@ gem "redis", "~> 4.0"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -47,10 +47,20 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem "simple_form"
+
+gem "sassc-rails"
+
+gem "bulma-rails", "~> 0.9.4"
+
+gem "email_validator", "~> 1.6"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "byebug", "~> 9.0", ">= 9.0.6"
+  gem "rspec-rails", "~> 6.0", ">= 6.0.3"
+  gem "factory_bot_rails", "~> 6.2"
 end
 
 group :development do
@@ -62,11 +72,15 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
+  gem "shoulda-matchers", "~> 5.0"
+  gem "rails-controller-testing", "~> 1.0", ">= 1.0.5"
+  gem "database_cleaner", "~> 1.5", ">= 1.5.3"
+  gem "webdrivers", "~> 5.3", ">= 5.3.1"
 end

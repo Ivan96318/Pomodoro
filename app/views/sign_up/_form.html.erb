@@ -1,0 +1,8 @@
+<%= simple_form_for new_user, url: sign_up_path do |form| %>
+  <%= form.input :name, required: false %>
+  <%= form.input :email, required: false %>
+  <%= form.input :password %>
+  <%= form.input :password_confirmation %>
+  
+  <%= form.submit "Guardar", class: "button is-link is-fullwidth mt-5" %>
+<% end %>

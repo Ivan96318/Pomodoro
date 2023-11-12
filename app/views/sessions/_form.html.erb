@@ -1,0 +1,17 @@
+<div id="new-login-session">
+  <% if session.errors.any? %>
+    <div class="notification is-danger has-text-centered mb-5">
+      <%= session.errors[:base].first %>
+    </div>
+  <% end %>
+
+  <%= simple_form_for session, url: login_path do |form| %>
+    <%= form.input :email, required: false %>
+    <%= form.input :password %>
+    <%= form.submit "Iniciar sesión", class: "button is-link is-fullwidth mt-5" %>
+  <% end %>
+  
+  <div class="mt-5 has-text-centered is-underlined">
+    <%= link_to "¿Olvidaste tu contraseña?", "#" %>
+  </div>
+</div>

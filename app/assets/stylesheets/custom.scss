@@ -17,3 +17,10 @@ html, body {
   }
 }
 
+.custom-image {
+  background-image: url("hello-world.jpeg");
+  height: 102vh; // TODO: check why is not cover the full height of the view with 100vh
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

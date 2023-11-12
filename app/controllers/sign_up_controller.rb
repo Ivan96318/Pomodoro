@@ -1,4 +1,6 @@
 class SignUpController < ApplicationController
+  skip_before_action :authorize
+  
   def new
     @new_user = User.new
   end
@@ -9,6 +11,7 @@ class SignUpController < ApplicationController
     if @new_user.save
       # TODO: pending to redirect to inside of the application
       # TODO: pending of set to notice message to translation
+      session[:user_id] = @new_user.id
       flash[:notice] = "Usuario creado con exito"
       redirect_to root_path
     else

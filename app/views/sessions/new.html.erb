@@ -1,0 +1,19 @@
+<div class="columns is-variable is-8 full-width">
+  <div class="column is-half custom-image"></div>
+  <div class="column is-half">
+    <div class="mx-6">
+
+      <h1 class="has-text-centered is-size-1 has-text-weight-semibold mt-6">Inicia Sesión</h1>
+      <div class="card mt-6">  
+        <div class="p-5">
+          <%= render "form", session: @session %>
+        </div>
+      </div>
+
+      <div class="has-text-centered mt-5">
+        Si no cuentas con una contraseña puedes crear una <%= link_to "aqui", sign_up_path %>
+      </div>
+
+    </div>
+  </div>
+</div>

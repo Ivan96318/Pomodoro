@@ -1,4 +1,11 @@
 es:
+  activemodel:
+    models:
+      session: Sesión
+    attributes:
+      session:
+        email: Correo electrónico
+        password: Contraseña
   activerecord:
     models:
       user: Usuario

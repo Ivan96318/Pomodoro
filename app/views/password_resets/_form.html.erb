@@ -1,0 +1,23 @@
+<div id="password-reset-form">
+  <% if password_reset.errors.any? %>
+    <div class="notification is-danger has-text-centered mb-5">
+      <%= password_reset.errors[:base].first %>
+    </div>
+  <% end %>
+
+  <%= form_with url: password_reset_path  do |form| %>
+
+    <div class="field">
+      <%= form.label :email, "Correo electronico", class: "label" %>
+      <div class="control">
+        <%= form.text_field :email, class: "input", placeholder: "juan@gmail.com" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= form.submit "Recuperar contraseña", class: "button is-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>

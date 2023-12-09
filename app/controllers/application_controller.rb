@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
   def set_container
     @container = true
   end
+
+  def check_for_session
+    redirect_to root_path, notice: "Ya iniciaste sessión" if session[:user_id]
+  end
 end

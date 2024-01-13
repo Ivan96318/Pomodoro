@@ -1,0 +1,39 @@
+<nav class="navbar" role="navigation" aria-label="main navigation" data-controller="open-menu">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" data-open-menu-target="burgerMenu" data-action="open-menu#toggleMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu" data-open-menu-target="navbarMenu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Inicio
+      </a>
+
+      <a class="navbar-item">
+        Mis proyectos
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <button class="button is-light">
+            <span class="icon">
+              <i class="fa-solid fa-gear"></i>
+            </span>
+            <span>Configuración</span>
+          </button>
+          <%= button_to "Cerrar sesón", logout_path, method: :delete, class: "button is-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

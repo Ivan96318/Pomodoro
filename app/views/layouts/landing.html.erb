@@ -7,15 +7,11 @@
     <%= csp_meta_tag %>
     <%= yield :head %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <script src="https://kit.fontawesome.com/066d6eefeb.js" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <div class=<%= "container" if @container %>>
-      <%= render "shared/flash" %>
-      <%= yield %>
-    </div>
+    <%= render "shared/flash" %>
+    <%= yield %>
   </body>
 </html>

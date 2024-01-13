@@ -3,13 +3,11 @@ class HomeController < ApplicationController
   
   def index
     render_landing if !current_user
-    
   end
-
+  
   private
-
+  
   def render_landing
-    @container = false
-    render "landing"
+    render "landing", layout: "landing"
   end
 end

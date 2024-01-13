@@ -3,14 +3,14 @@ class SignUpController < ApplicationController
   
   def new
     @new_user = User.new
+    render layout: "landing"
   end
 
   def create
     @new_user = User.new(user_params)
     
     if @new_user.save
-      # TODO: pending to redirect to inside of the application
-      # TODO: pending of set to notice message to translation
+      # TODO: redirect to login to sign up
       session[:user_id] = @new_user.id
       flash[:notice] = "Usuario creado con exito"
       redirect_to root_path

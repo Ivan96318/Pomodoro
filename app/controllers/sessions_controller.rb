@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def new
     @session = Session.new
-    @container = false
+    render layout: "landing"
   end
 
   def create

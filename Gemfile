@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8"
+gem "rails", "~> 7.1.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -81,6 +81,6 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers", "~> 5.0"
   gem "rails-controller-testing", "~> 1.0", ">= 1.0.5"
-  gem "database_cleaner", "~> 1.5", ">= 1.5.3"
+  gem "database_cleaner", "~> 2.0", ">= 2.0.2"
   gem "webdrivers", "~> 5.3", ">= 5.3.1"
 end

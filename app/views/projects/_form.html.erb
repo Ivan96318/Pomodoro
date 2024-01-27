@@ -1,0 +1,43 @@
+<%= form_with model: new_project, id: "new_project" do |form| %>
+  <div class="field">
+    <%= form.label :name, "Nombre del proyecto", class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, class: "input #{ "is-danger" if new_project.errors[:name].any? }" %>
+    </div>
+    <% if new_project.errors[:name].any? %>
+      <p class="help is-danger">Nombre <%= new_project.errors[:name].first %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Descripción", class: "label" %>
+    <div class="control">
+      <%= form.text_area :description, class: "textarea #{ "is-danger" if new_project.errors[:description].any? }" %>
+    </div>
+    <% if new_project.errors[:description].any? %>
+      <p class="help is-danger">Descripción <%= new_project.errors[:description].first %></p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <label class="radio">
+        <%= form.radio_button :project_type, "personal" %>
+        Personal
+      </label>
+      <label class="radio">
+        <%= form.radio_button :project_type, "work" %>
+        Trabajo
+      </label>
+    </div>
+  </div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <%= form.submit "Guardar", class: "button is-link" %>
+  </div>
+  <div class="control">
+    <button class="button is-link is-light">Cancel</button>
+  </div>
+</div>
+<% end %>

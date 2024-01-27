@@ -9,12 +9,15 @@ es:
   activerecord:
     models:
       user: Usuario
+      project: Proyecto
     attributes:
       user:
         name: Nombre
         email: Correo electrónico
         password: Contraseña
         password_confirmation: Confirmar constraseña
+      project:
+        name: Nombre
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'

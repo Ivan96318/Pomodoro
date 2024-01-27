@@ -12,7 +12,7 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST #create" do
-    context "with valid paramenters" do
+    context "with valid parameters" do
       it "logs in the user" do
         session_paramas = {
           email: user.email,
@@ -27,7 +27,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     context "with invalid parameters" do
-      it "show error in the login form" do
+      it "does not render to root path" do
         session_params = {
           email: "test",
           password: nil

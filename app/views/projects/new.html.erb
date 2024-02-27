@@ -1,5 +1,8 @@
-<h2 class="is-size-2">Nuevo proyecto</h2>
-
-<div class="card mt-6 p-5">
-  <%= render "form", new_project: @new_project %>
-</div>
+<%= turbo_frame_tag "modal" do %>
+  <header class="modal-card-head">
+    <h2 class="is-size-2">Nuevo proyecto</h2>
+  </header>
+  <section class="modal-card-body">
+    <%= render "form", new_project: @new_project %>
+  </section>
+<% end %>

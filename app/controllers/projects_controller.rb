@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
 
     if new_project.save
       flash[:notice] = "Proyecto creado con exito"
-      redirect_to project_path(new_project)
+      redirect_to new_project
     else
       render(turbo_stream: turbo_stream.replace(
         new_project,

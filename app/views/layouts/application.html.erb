@@ -16,6 +16,14 @@
     <div class=<%= "container" if @container %>>
       <%= render "shared/flash" %>
       <%= yield %>
+
+      <div class="modal" id="turbo-modal" data-controller="modal">
+        <div class="modal-background" data-action="click->modal#close"></div>
+        <div class="modal-card">
+          <%= turbo_frame_tag "modal" %>
+        </div>
+        <button class="modal-close is-large" aria-label="close" data-action="modal#close"></button>
+      </div>
     </div>
   </body>
 </html>

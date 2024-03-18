@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
-  resources :projects, except: [:index]
+  resources :users do
+    scope module: :users do
+      resources :projects
+    end
+  end
 end

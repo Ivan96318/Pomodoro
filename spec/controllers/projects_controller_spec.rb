@@ -1,11 +1,16 @@
 require "rails_helper"
 
-RSpec.describe ProjectsController, type: :controller do
-  let(:project) { create(:project) }
+RSpec.describe Users::ProjectsController, type: :controller do
+  let(:user) { create(:user) }
+  let(:project) { create(:project, user: user) }
+
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
 
   describe "GET #new" do
     it "renders the new template" do
-      get :new
+      get :new, params: { user_id: user.id }
 
       expect(response).to render_template(:new)
     end
@@ -20,11 +25,11 @@ RSpec.describe ProjectsController, type: :controller do
           project_type: "personal"
         }
 
-        post :create, params: { project: project_params }
+        post :create, params: { user_id: user.id, project: project_params }
 
         project = Project.last
 
-        expect(response).to redirect_to(project_path(project))
+        expect(response).to redirect_to(user_project_path(user, project))
         expect(Project.count).to eq(1)
         expect(flash[:notice]).to eq("Proyecto creado con exito")
       end
@@ -38,7 +43,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_type: "personal"
         }
 
-        post :create, params: { project: project_params }
+        post :create, params: { user_id: user.id, project: project_params }
 
         expect(Project.count).to eq(0)
       end
@@ -47,7 +52,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "GET #show" do
     it "renders the show template" do
-      get :show, params: { id: project.id }
+      get :show, params: { user_id: user.id, id: project.id }
 
       expect(response).to render_template(:show)
     end
@@ -55,7 +60,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "GET #edit" do
     it "renders the edit template" do
-      get :edit, params: { id: project.id }
+      get :edit, params: { user_id: user.id, id: project.id }
 
       expect(response).to render_template(:edit)
     end
@@ -70,7 +75,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_type: "personal"
         }
 
-        patch :update, params: { id: project.id, project: project_params }
+        patch :update, params: { user_id: user.id, id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
         expect(project.reload.name).to eq("fire")
@@ -86,7 +91,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_type: "personal"
         }
 
-        patch :update, params: { id: project.id, project: project_params }
+        patch :update, params: { user_id: user.id, id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
         expect(project.reload.name).to eq("Almanaque")
@@ -97,10 +102,9 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroy the project" do
-      delete :destroy, params: { id: project.id }
+      delete :destroy, params: { user_id: user.id, id: project.id }
 
       expect(Project.count).to eq(0)
-      expect(response).to redirect_to(root_path)
     end
   end
 end

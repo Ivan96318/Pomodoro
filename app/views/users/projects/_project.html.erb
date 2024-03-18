@@ -1,0 +1,14 @@
+<tr id="<%= dom_id(project) %>">
+  <th><%= project.name %></th>
+  <th><%= project.description %></th>
+  <th><%= t("activerecord.attributes.project.project_type_enum.#{project.project_type}") %></th>
+  <th>
+    <div class="is-flex">
+      <%= link_to "Ver", user_project_path(current_user, project), class: "button is-link mr-2" %>
+      <%= link_to_modal edit_user_project_path(current_user, project), class: "button is-info mr-2" do %>
+        Editar
+      <% end %>
+      <%= button_to "Eliminar", user_project_path(current_user, project), method: :delete, class: "button is-danger", data: { turbo_confirm: "¿Estas seguro?" } %>
+    </div>
+  </th>
+</tr>

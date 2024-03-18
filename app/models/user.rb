@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :projects, dependent: :destroy
+
   has_secure_password
   PASSWORD_REQUERIMENTS = /\A
   (?=.{8,}) # At least 8 characters

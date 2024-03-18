@@ -18,6 +18,10 @@ es:
         password_confirmation: Confirmar constraseña
       project:
         name: Nombre
+        project_type: Tipo
+        project_type_enum:
+          personal: Personal
+          work: Trabajo
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'

@@ -1,8 +1,29 @@
-<h1 class="is-size-1">HOME</h1>
+<h1 class="is-size-1">Inicio</h1>
 
-<div>
-  <%#= link_to "Nuevo projecto", new_project_path, class: "button is-light is-pulled-right" %>
-  <%= link_to_modal new_project_path do %>
-    Neuvo Proyecto
+<div class="is-flex is-justify-content-flex-end mb-5">
+  <%= link_to_modal new_user_project_path(current_user), class: "button is-info" do %>
+    Nuevo Proyecto
+  <% end %>
+</div>
+
+<div class="card">
+  <% if @projects.any? %>
+    <table class="table is-narrow is-fullwidth">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Acciónes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <%= render "users/projects/project", project: project %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%= render "users/projects/empty_projects" %>
   <% end %>
 </div>

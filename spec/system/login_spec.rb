@@ -13,7 +13,7 @@ RSpec.describe "Login", type: :system do
       click_button "Iniciar sesión"
 
       expect(page).to have_content("Bienvenido")
-      expect(page).to have_content("HOME")
+      expect(page).to have_content("Inicio")
     end
   end
 

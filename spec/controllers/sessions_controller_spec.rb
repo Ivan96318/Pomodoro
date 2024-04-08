@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  let (:user) { create(:user) }
+  let(:user) { create(:user) }
 
-  describe "GET #new" do
-    it "renders the new template" do
+  describe 'GET #new' do
+    it 'renders the new template' do
       get :new
 
       expect(response).to render_template(:new)
     end
   end
 
-  describe "POST #create" do
-    context "with valid parameters" do
-      it "logs in the user" do
+  describe 'POST #create' do
+    context 'with valid parameters' do
+      it 'logs in the user' do
         session_paramas = {
           email: user.email,
           password: user.password
@@ -22,14 +24,14 @@ RSpec.describe SessionsController, type: :controller do
         post :create, params: { session: session_paramas }
 
         expect(response).to redirect_to(root_path)
-        expect(flash[:notice]).to eq("Bienvenido")
+        expect(flash[:notice]).to eq('Bienvenido')
       end
     end
 
-    context "with invalid parameters" do
-      it "does not render to root path" do
+    context 'with invalid parameters' do
+      it 'does not render to root path' do
         session_params = {
-          email: "test",
+          email: 'test',
           password: nil
         }
 
@@ -40,8 +42,8 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
-    it "redirects to login path" do
+  describe 'DELETE #destroy' do
+    it 'redirects to login path' do
       delete :destroy
 
       expect(response).to redirect_to(login_path)

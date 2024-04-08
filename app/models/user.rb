@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :projects, dependent: :destroy
 
@@ -13,7 +15,7 @@ class User < ApplicationRecord
   # TODO: setup email_validator well
   validates :email, :name, presence: true
   validates :email, email: true
-  validates :password,  format: PASSWORD_REQUERIMENTS
+  validates :password, format: PASSWORD_REQUERIMENTS
 
   validates_uniqueness_of :email
 end

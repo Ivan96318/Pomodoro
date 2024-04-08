@@ -1,28 +1,30 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe Users::ProjectsController, type: :controller do
   let(:user) { create(:user) }
-  let(:project) { create(:project, user: user) }
+  let(:project) { create(:project, user:) }
 
   before do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
-  describe "GET #new" do
-    it "renders the new template" do
+  describe 'GET #new' do
+    it 'renders the new template' do
       get :new, params: { user_id: user.id }
 
       expect(response).to render_template(:new)
     end
   end
 
-  describe "POST" do
-    context "with valid parameters" do
-      it "create a new project" do
+  describe 'POST' do
+    context 'with valid parameters' do
+      it 'create a new project' do
         project_params = {
-          name: "Almanac project",
-          description: "Project to return in the time",
-          project_type: "personal"
+          name: 'Almanac project',
+          description: 'Project to return in the time',
+          project_type: 'personal'
         }
 
         post :create, params: { user_id: user.id, project: project_params }
@@ -31,16 +33,16 @@ RSpec.describe Users::ProjectsController, type: :controller do
 
         expect(response).to redirect_to(user_project_path(user, project))
         expect(Project.count).to eq(1)
-        expect(flash[:notice]).to eq("Proyecto creado con exito")
+        expect(flash[:notice]).to eq('Proyecto creado con exito')
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a project" do
+    context 'with invalid parameters' do
+      it 'does not create a project' do
         project_params = {
           name: nil,
-          description: "Project to return in the time",
-          project_type: "personal"
+          description: 'Project to return in the time',
+          project_type: 'personal'
         }
 
         post :create, params: { user_id: user.id, project: project_params }
@@ -50,58 +52,58 @@ RSpec.describe Users::ProjectsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "renders the show template" do
+  describe 'GET #show' do
+    it 'renders the show template' do
       get :show, params: { user_id: user.id, id: project.id }
 
       expect(response).to render_template(:show)
     end
   end
 
-  describe "GET #edit" do
-    it "renders the edit template" do
+  describe 'GET #edit' do
+    it 'renders the edit template' do
       get :edit, params: { user_id: user.id, id: project.id }
 
       expect(response).to render_template(:edit)
     end
   end
 
-  describe "PATCH #update" do
-    context "with valid parameters" do
-      it "updates the project" do
+  describe 'PATCH #update' do
+    context 'with valid parameters' do
+      it 'updates the project' do
         project_params = {
-          name: "fire",
-          description: "change description",
-          project_type: "personal"
+          name: 'fire',
+          description: 'change description',
+          project_type: 'personal'
         }
 
         patch :update, params: { user_id: user.id, id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
-        expect(project.reload.name).to eq("fire")
-        expect(flash[:notice]).to eq("Proyecto actualizado correctamente")
+        expect(project.reload.name).to eq('fire')
+        expect(flash[:notice]).to eq('Proyecto actualizado correctamente')
       end
     end
 
-    context "with invalid parameters" do
-      it "does not updates the project" do
+    context 'with invalid parameters' do
+      it 'does not updates the project' do
         project_params = {
           name: nil,
-          description: "change description",
-          project_type: "personal"
+          description: 'change description',
+          project_type: 'personal'
         }
 
         patch :update, params: { user_id: user.id, id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
-        expect(project.reload.name).to eq("Almanaque")
-        expect(flash[:notice]).not_to eq("Proyecto actualizado correctamente")
+        expect(project.reload.name).to eq('Almanaque')
+        expect(flash[:notice]).not_to eq('Proyecto actualizado correctamente')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroy the project" do
+  describe 'DELETE #destroy' do
+    it 'destroy the project' do
       delete :destroy, params: { user_id: user.id, id: project.id }
 
       expect(Project.count).to eq(0)

@@ -2,6 +2,7 @@
 
 class Project < ApplicationRecord
   belongs_to :user
+  has_many :tickets
 
   enum project_type: { personal: 0, work: 1 }
 

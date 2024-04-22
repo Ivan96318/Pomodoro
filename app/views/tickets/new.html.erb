@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "modal" do %>
+  <header class="modal-card-head">
+    <h3 class="title is-3">Nuevo Ticket</h3>
+  </header>
+  <section class="modal-card-body">
+    <%= render "form", ticket: @new_ticket, url: project_tickets_path(@project) %>
+  </section>
+<% end %>

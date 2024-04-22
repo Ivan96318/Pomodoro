@@ -25,9 +25,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_031839) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string "short_description"
+    t.string "short_description", null: false
     t.text "long_description"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
+    t.time "due_date"
     t.bigint "project_id", null: false
     t.bigint "assigned_to_id"
     t.datetime "created_at", null: false

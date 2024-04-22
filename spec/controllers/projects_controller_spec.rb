@@ -20,7 +20,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe 'POST' do
     context 'with valid parameters' do
-      it 'create a new project' do
+      it 'creates a new project' do
         project_params = {
           name: 'Almanac project',
           description: 'Project to return in the time',
@@ -89,7 +89,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     context 'with invalid parameters' do
-      it 'does not updates the project' do
+      it 'does not update the project' do
         project_params = {
           name: nil,
           description: 'change description',
@@ -107,7 +107,7 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroy the project' do
+    it 'destroys the project' do
       delete :destroy, params: { id: project.id }
 
       expect(Project.count).to eq(0)

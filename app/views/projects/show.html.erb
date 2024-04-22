@@ -1,5 +1,55 @@
-Proyecto: <%= @project.name %>
-<br>
+<div class="level">
+  <div class="level-left">
+    <h2 class="title is-2"><%= @project.name %></h2>
+  </div>
+  <div class="level-right">
+    <%= link_to_modal new_project_ticket_path(@project), class: "button is-primary" do %>
+      Nuevo ticket
+    <% end %>
+  </div>
+</div>
 
+<br>
 <%= link_to "Editar", edit_project_path(@project) %> <br>
-<%= button_to "Eliminar proyecto", project_path(@project), method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "¿Estas seguro de eliminar este proyecto?" } } %>
+<%= button_to "Eliminar proyecto", project_path(@project), method: :delete, class: "button is-danger", form: { 
+  data: { turbo_confirm: "¿Estas seguro de eliminar este proyecto?" } 
+} %>
+
+
+<div class="columns mt-5">
+  <%# nuevos tickets %>
+  <div class="column is-2">
+    <p class="mb-3">To Do</p>
+    <%= render "cards", tickets: @new_tickets, project: @project %>
+  </div>
+
+  <%# tickets in progress %>
+  <div class="column is-2">
+    <p class="mb-3">In Progress</p>
+    <%= render "cards", tickets: @in_progress_tickets, project: @project %>
+  </div>
+
+  <%# tickets done %>
+  <div class="column is-2">
+    <p class="mb-3">Done</p>
+    <%= render "cards", tickets: @done_tickets, project: @project %>
+  </div>
+
+  <%# tickets cancel %>
+  <div class="column is-2">
+    <p class="mb-3">Cancel</p>
+    <%= render "cards", tickets: @cancel_tickets, project: @project %>
+  </div>
+
+  <%# tickets pause %>
+  <div class="column is-2">
+    <p class="mb-3">In Pause</p>
+    <%= render "cards", tickets: @pause_tickets, project: @project %>
+  </div>
+
+  <%# tickets pending %>
+  <div class="column is-2">
+    <p class="mb-3">Pending</p>
+    <%= render "cards", tickets: @pending_tickets, project: @project %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<% if tickets.empty? %>
+  <div>No hay tickets disponibles</div>
+<% else %>
+  <% tickets.each do |ticket| %>
+    <%= link_to project_ticket_path(project, ticket) do %>
+      <%= render "tickets/ticket", ticket: ticket %>
+    <% end %>
+  <% end %>
+<% end %>

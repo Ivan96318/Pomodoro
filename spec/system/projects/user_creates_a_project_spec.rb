@@ -18,7 +18,7 @@ RSpec.describe 'User creates a new project', type: :system do
       fill_in 'project[description]', with: 'Descripcion de prueba'
       click_button 'Guardar'
 
-      expect(page).to have_content('Proyecto: Proyecto de prueba')
+      expect(page).to have_content('Proyecto de prueba')
       expect(page).to have_content('Proyecto creado con exito')
     end
   end

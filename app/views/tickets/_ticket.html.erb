@@ -1,0 +1,10 @@
+<%= tag.div id: dom_id(ticket) do %>
+  <div class="card mb-2">
+    <div class="card-header p-1">
+      <%= ticket.short_description %>
+    </div>
+    <div class="card-content">
+      <%= ticket.long_description.truncate(20) %>
+    </div>
+  </div>
+<% end %>

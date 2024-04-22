@@ -1,0 +1,5 @@
+<%= simple_form_for ticket, url: url do |form| %>
+  <%= form.input :short_description, as: :text, required: false %>
+  <%= form.input :long_description, as: :text %>
+  <%= form.button :submit, class: "button is-success" %>
+<% end %>

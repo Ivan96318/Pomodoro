@@ -1,0 +1,20 @@
+<div class="content">
+  <h1 class="is-size-1"><%= @ticket.short_description %></h1>
+  <span class="is-pulled-right">
+    <%= link_to_modal edit_project_ticket_path(@project, @ticket), class: "button is-info" do %>
+      Editar Ticket
+    <% end %>
+  </span>
+  <p>
+    <%= @ticket.long_description %>
+  </p>
+  <p>
+    Estado: <%= t("activerecord.attributes.ticket.status_enum.#{@ticket.status}") %>
+  </p>
+  <p>
+    Fecha compromiso: <%= @ticket.due_date.presence || "Sin fecha" %>
+  </p>
+  <p>
+    Asignado a: <%= @ticket.assigned_to&.name.presence || "Sin asignar" %>
+  </p>
+</div>

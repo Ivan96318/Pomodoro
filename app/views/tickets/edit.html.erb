@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "modal" do %>
+  <header class="modal-card-head is-justify-content-space-between">
+    <h2 class="title is-2">Editar ticket</h2>
+    <%= button_to "Eliminar", project_ticket_path(@project, @ticket), method: :delete, class: "button is-danger", data: { turbo_frame: "_top" }  %>
+  </header>
+  <section class="modal-card-body">
+    <%= render "form", ticket: @ticket, url: project_ticket_path(@project, @ticket) %>
+  </section>
+<% end %>

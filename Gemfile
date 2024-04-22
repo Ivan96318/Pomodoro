@@ -86,4 +86,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'webdrivers', '~> 5.3', '>= 5.3.1'
+  gem 'faker', '~> 3.3', '>= 3.3.1'
 end

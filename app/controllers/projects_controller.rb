@@ -7,7 +7,9 @@ class ProjectsController < ApplicationController
     @new_project = Project.new
   end
 
-  def show; end
+  def show
+    set_tickets
+  end
 
   def edit; end
 
@@ -56,5 +58,14 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+  end
+
+  def set_tickets
+    @new_tickets = @project.tickets.where(status: 0)
+    @in_progress_tickets = @project.tickets.where(status: 1)
+    @done_tickets = @project.tickets.where(status: 2)
+    @cancel_tickets = @project.tickets.where(status: 3)
+    @pause_tickets = @project.tickets.where(status: 4)
+    @pending_tickets = @project.tickets.where(status: 5)
   end
 end

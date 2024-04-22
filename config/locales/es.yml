@@ -10,6 +10,7 @@ es:
     models:
       user: Usuario
       project: Proyecto
+      tickect: Ticket
     attributes:
       user:
         name: Nombre
@@ -22,6 +23,17 @@ es:
         project_type_enum:
           personal: Personal
           work: Trabajo
+      ticket:
+        short_description: Titulo
+        long_description: Descripción
+        status: Estado
+        status_enum:
+          to_do: Por hacer
+          in_progress: En progreso
+          done: Hecho
+          cancel: Cancelado
+          pause: En pausa
+          pending: Pendiente
     errors:
       messages:
         record_invalid: 'La validación falló: %{errors}'
@@ -71,4 +83,9 @@ es:
       header:
         one: "%{model} no pudo guardarse debido a 1 error"
         other: "%{model} no pudo guardarse debido a %{count} errores"
+  helpers:
+    submit:
+      ticket:
+        create: "Guardar %{model}"
+        update: "Actualizar %{model}"
 

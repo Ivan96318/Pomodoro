@@ -1,6 +1,0 @@
-Proyecto: <%= @project.name %>
-<br>
-
-<%= link_to "Editar", edit_user_project_path(current_user, @project) %> <br>
-<%= button_to "Eliminar proyecto", user_project_path(current_user, @project), method: :delete, class: "button is-danger", form: { data: { turbo_confirm: "¿Estas seguro de eliminar este proyecto?" } } %>
-

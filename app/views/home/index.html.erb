@@ -1,7 +1,7 @@
 <h1 class="is-size-1">Inicio</h1>
 
 <div class="is-flex is-justify-content-flex-end mb-5">
-  <%= link_to_modal new_user_project_path(current_user), class: "button is-info" do %>
+  <%= link_to_modal new_project_path, class: "button is-info" do %>
     Nuevo Proyecto
   <% end %>
 </div>
@@ -19,11 +19,11 @@
       </thead>
       <tbody>
         <% @projects.each do |project| %>
-          <%= render "users/projects/project", project: project %>
+          <%= render "projects/project", project: project %>
         <% end %>
       </tbody>
     </table>
   <% else %>
-    <%= render "users/projects/empty_projects" %>
+    <%= render "projects/empty_projects" %>
   <% end %>
 </div>

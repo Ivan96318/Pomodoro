@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Users::ProjectsController, type: :controller do
+RSpec.describe ProjectsController, type: :controller do
   let(:user) { create(:user) }
   let(:project) { create(:project, user:) }
 
@@ -12,7 +12,7 @@ RSpec.describe Users::ProjectsController, type: :controller do
 
   describe 'GET #new' do
     it 'renders the new template' do
-      get :new, params: { user_id: user.id }
+      get :new
 
       expect(response).to render_template(:new)
     end
@@ -24,14 +24,15 @@ RSpec.describe Users::ProjectsController, type: :controller do
         project_params = {
           name: 'Almanac project',
           description: 'Project to return in the time',
-          project_type: 'personal'
+          project_type: 'personal',
+          user_id: user.id
         }
 
-        post :create, params: { user_id: user.id, project: project_params }
+        post :create, params: { project: project_params }
 
         project = Project.last
 
-        expect(response).to redirect_to(user_project_path(user, project))
+        expect(response).to redirect_to(project_path(project))
         expect(Project.count).to eq(1)
         expect(flash[:notice]).to eq('Proyecto creado con exito')
       end
@@ -42,10 +43,11 @@ RSpec.describe Users::ProjectsController, type: :controller do
         project_params = {
           name: nil,
           description: 'Project to return in the time',
-          project_type: 'personal'
+          project_type: 'personal',
+          user_id: user.id
         }
 
-        post :create, params: { user_id: user.id, project: project_params }
+        post :create, params: { project: project_params }
 
         expect(Project.count).to eq(0)
       end
@@ -54,7 +56,7 @@ RSpec.describe Users::ProjectsController, type: :controller do
 
   describe 'GET #show' do
     it 'renders the show template' do
-      get :show, params: { user_id: user.id, id: project.id }
+      get :show, params: { id: project.id }
 
       expect(response).to render_template(:show)
     end
@@ -62,7 +64,7 @@ RSpec.describe Users::ProjectsController, type: :controller do
 
   describe 'GET #edit' do
     it 'renders the edit template' do
-      get :edit, params: { user_id: user.id, id: project.id }
+      get :edit, params: { id: project.id }
 
       expect(response).to render_template(:edit)
     end
@@ -74,10 +76,11 @@ RSpec.describe Users::ProjectsController, type: :controller do
         project_params = {
           name: 'fire',
           description: 'change description',
-          project_type: 'personal'
+          project_type: 'personal',
+          user_id: user.id
         }
 
-        patch :update, params: { user_id: user.id, id: project.id, project: project_params }
+        patch :update, params: { id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
         expect(project.reload.name).to eq('fire')
@@ -90,10 +93,11 @@ RSpec.describe Users::ProjectsController, type: :controller do
         project_params = {
           name: nil,
           description: 'change description',
-          project_type: 'personal'
+          project_type: 'personal',
+          user_id: user.id
         }
 
-        patch :update, params: { user_id: user.id, id: project.id, project: project_params }
+        patch :update, params: { id: project.id, project: project_params }
 
         expect(Project.count).to eq(1)
         expect(project.reload.name).to eq('Almanaque')
@@ -104,7 +108,7 @@ RSpec.describe Users::ProjectsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroy the project' do
-      delete :destroy, params: { user_id: user.id, id: project.id }
+      delete :destroy, params: { id: project.id }
 
       expect(Project.count).to eq(0)
     end

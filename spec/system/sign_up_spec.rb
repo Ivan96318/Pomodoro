@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Sign up', type: :system do
+  before do
+    driven_by(:selenium_chrome_headless)
+  end
+
   context 'when the fields are correct' do
     it 'creates a new user', js: true do
       visit sign_up_path

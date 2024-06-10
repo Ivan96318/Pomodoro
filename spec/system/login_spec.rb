@@ -5,6 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Login', type: :system do
   let(:user) { create(:user) }
 
+  before do
+    driven_by(:selenium_chrome_headless)
+  end
+
   context 'when the form is valid', js: true do
     it 'logs in the user' do
       user

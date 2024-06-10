@@ -4,6 +4,10 @@ RSpec.describe "User creates a new ticket", type: :system do
   let(:user) { create(:user) }
   let(:project) { create(:project) }
 
+  before do
+    driven_by(:selenium_chrome_headless)
+  end
+
   # TODO: agregar mas pruebas para cuando haya una accion despues de crear el ticket
   context "when the values are valid", js: true do
     xit "creates a new ticket" do

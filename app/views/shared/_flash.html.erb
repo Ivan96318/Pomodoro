@@ -1,15 +1,15 @@
 
 <% if flash[:notice] %>
-  <div class="notification is-primary mt-3">
-    <button class="delete"></button>
+  <div class="notification is-primary mt-3" data-controller="remove-flash">
+    <button class="delete" data-action="remove-flash#removeNow"></button>
     <%= flash[:notice] %>
   </div>
 <% end %>
 
 
 <% if flash[:alert] %>
-  <div class="notification is-danger">
-    <button class="delete"></button>
+  <div class="notification is-danger" data-controller="remove-flash">
+    <button class="delete" data-action="remove-flash#removeNow"></button>
     <%= flash[:alert] %>
   </div>
 <% end %>

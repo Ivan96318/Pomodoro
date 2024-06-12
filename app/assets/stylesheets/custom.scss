@@ -28,3 +28,9 @@ html, body {
 .is-bordered {
   border-style: solid;
 }
+
+// notifications
+
+.notification {
+  transition: opacity 0.6s;
+}

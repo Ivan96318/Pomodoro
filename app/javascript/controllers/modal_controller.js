@@ -12,4 +12,10 @@ export default class extends Controller {
   close() {
     this.modal.classList.remove("is-active")
   }
+
+  closeOnSubmitSuccess(event) {
+    if (event.detail.success) {
+      this.close()
+    }
+  }
 }

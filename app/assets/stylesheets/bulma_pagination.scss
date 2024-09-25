@@ -1,0 +1,9 @@
+.pagy-bulma {
+  .pagination-link, .pagination-previous, .pagination-next {
+    background-color: #fff;
+  }
+
+  .pagination-link.is-current {
+      background-color: #485fc7;
+  }
+}

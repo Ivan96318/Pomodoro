@@ -10,6 +10,14 @@ RSpec.describe ProjectsController, type: :controller do
     allow(controller).to receive(:current_user).and_return(user)
   end
 
+  describe 'GET #index' do
+    it 'renders the index template' do
+      get :index
+
+      expect(response).to render_template(:index)
+    end
+  end
+
   describe 'GET #new' do
     it 'renders the new template' do
       get :new
@@ -18,7 +26,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
-  describe 'POST' do
+  describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new project' do
         project_params = {

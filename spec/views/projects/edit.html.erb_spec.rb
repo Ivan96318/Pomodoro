@@ -2,12 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'users/projects/edit', type: :view do
+RSpec.describe 'projects/edit', type: :view do
   let(:user) { create(:user) }
   let(:project) { create(:project) }
 
-  # TODO: averiguar como hacer stub el current user
-  it 'displays the update form', :skip do
+  it 'displays the update form' do
     assign(:project, project)
 
     render

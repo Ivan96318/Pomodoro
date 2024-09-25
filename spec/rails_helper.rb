@@ -12,6 +12,9 @@ require 'support/factory_bot'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'support/pagy_helper'
+require 'support/authentication_helper'
+require 'rack_session_access/capybara'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -59,6 +62,10 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
+  end
   # config.use_transactional_fixtures = true
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -82,6 +89,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.include PagyHelper, type: :view
+  config.include AuthenticationHelper, type: :system
 end
 
 Shoulda::Matchers.configure do |config|

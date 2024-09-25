@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :projects, except: [:index] do
+  resources :projects do
     resources :tickets, except: [:index]
   end
 end

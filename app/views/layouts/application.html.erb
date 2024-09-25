@@ -15,6 +15,7 @@
     <%= render "shared/navbar" %>
     <div class="<%= "container" if @container %> mt-5">
       <%= render "shared/flash" %>
+      <div id="turbo-flash-message"></div>
       <%= yield %>
 
       <div class="modal" id="turbo-modal" data-controller="modal">

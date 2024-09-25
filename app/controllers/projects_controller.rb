@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
+  include Pagy::Backend
+
   before_action :set_project, only: %i[show edit update destroy]
 
+  def index
+    @pagy, @projects = pagy(Project.where(user_id: current_user.id).limit(15))
+  end
   def new
     @new_project = Project.new
   end
@@ -42,9 +47,17 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.delete
-    flash.now[:notice] = 'Proyecto eliminado correctamente'
-    render(turbo_stream: turbo_stream.remove(@project))
+    if @project.delete
+      render turbo_stream: [
+        turbo_stream.remove(@project),
+        turbo_stream.replace("turbo-flash-message", 
+          partial: "shared/turbo_flash", 
+          locals: { message: "Proyecto eliminado correctamente" })]
+    else
+      render turbo_stream: turbo_stream.replace("turbo-flash-message", 
+        partial: "shared/turbo_flash", 
+        locals: { message: "No se pudo eliminar el proyecto" })
+    end
   end
 
   private

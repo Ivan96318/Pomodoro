@@ -15,7 +15,9 @@
  */
  
  @import "bulma";
-
-// custom css
-@import "custom.scss"
  
+ // custom css
+ @import "custom.scss";
+ 
+ // pagination bulma
+ @import "bulma_pagination.scss";

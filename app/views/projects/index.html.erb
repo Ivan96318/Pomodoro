@@ -1,0 +1,36 @@
+<div class="is-flex is-justify-content-space-between is-align-items-center">
+  <h1 class="is-size-1">Mis Proyectos</h1>
+  <%= link_to_modal new_project_path, class: "button is-info" do %>
+    Nuevo Proyecto
+  <% end %>
+</div>
+
+<div class="card mt-6 p-5">
+  <table class="table full-width">
+    <thead>
+      <tr>
+        <th>Proyecto</th>
+        <th>Descripción</th>
+        <th>Tipo</th>
+        <th>Creado en</th>
+        <th>Ajustes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr id="<%= dom_id(project) %>">
+          <th><%= link_to project.name, project_path(project) %></th>
+          <th><%= project.description %></th>
+          <th><%= project.project_type %></th>
+          <th><%= project.created_at %></th>
+          <th>
+            <%= link_to_modal edit_project_path(project), class: "button" do %>
+              ...
+            <% end %>
+          </th>
+        </tr>    
+      <% end %>
+    </tbody>
+  </table>
+  <%== pagy_bulma_nav(@pagy) %>
+</div>

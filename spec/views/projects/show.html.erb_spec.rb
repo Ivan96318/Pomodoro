@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe 'users/projects/show', type: :view do
+RSpec.describe 'projects/show', type: :view do
   let(:user) { create(:user) }
   let(:project) { create(:project, user:) }
 
-  # TODO: averiguar como hacer stub del current user
-  it 'displays the project details', :skip do
+  it 'displays the project details' do
     assign(:project, project)
+    
 
-    render current_user: user
+    render
 
     expect(rendered).to have_content("Proyecto: #{project.name}")
     expect(rendered).to have_link('Editar', href: edit_project_path(project))

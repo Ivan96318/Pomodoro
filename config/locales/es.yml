@@ -88,4 +88,3 @@ es:
       ticket:
         create: "Guardar %{model}"
         update: "Actualizar %{model}"
-

@@ -59,6 +59,8 @@ gem 'email_validator', '~> 1.6'
 
 gem 'browser', '~> 5.3', '>= 5.3.1'
 
+gem 'pagy', '~> 9.0'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug', '~> 9.0', '>= 9.0.6'
@@ -82,6 +84,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.2'
+  gem 'rack_session_access'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'

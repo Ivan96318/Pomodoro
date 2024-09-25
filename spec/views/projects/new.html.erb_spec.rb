@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe 'projects/new', type: :view do
   let(:new_project) { Project.new }
 
-  # TODO: averiguar como hacer stub el current user
-  it 'displays new project form', :skip do
+  it 'displays new project form' do
     assign(:new_project, new_project)
 
     render

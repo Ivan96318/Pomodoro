@@ -1,7 +1,17 @@
 <%= turbo_frame_tag "modal" do %>
-  <h2 class="is-size-2">Editar proyecto <%= @project.name %></h2>
+  <header class="modal-card-head">
+    <h2 class="modal-card-title is-size-2">Editar proyecto <%= @project.name %></h2>
+    <%= button_to "Eliminar", project_path(@project), 
+      method: :delete,
+      class: "button is-text has-text-danger",
+      form: {
+        data: {
+          turbo: true,
+          turbo_confirm: "¿Estas seguro?",
+          action: "turbo:submit-end->modal#closeOnSubmitSuccess" }} %>
+  </header>
 
-  <div class="card mt-6 p-5">
+  <div class="card p-5">
     <%= render "form", new_project: @project %>
   </div>
 <% end %>

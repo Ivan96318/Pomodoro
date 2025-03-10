@@ -1,0 +1,26 @@
+<div class="<%= @classes if @classes.present? %>">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title"><%= @project.name %></p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <span class="is-size-7-mobile">Creado en <%= l(@project.created_at, format: :date) %></span>
+        <br />
+        <span class="is-size-7-mobile px-2 py-1 has-background-info-light has-text-info has-text-weight-semibold border-radius-5"><%= t("activerecord.attributes.project.project_type_enum.#{@project.project_type}") %></span>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <%= link_to "Editar", "#", class: "card-footer-item has-background-success-light" %>
+      <%= link_to "Eliminar", "#",
+        method: :delete,
+        class: "card-footer-item has-background-danger-light",
+        form: {
+          data: {
+            turbo: true,
+            turbo_confirm: "¿Estas seguro?"
+          }
+        } %>
+    </footer>
+  </div>
+</div>

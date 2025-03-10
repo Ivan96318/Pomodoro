@@ -91,6 +91,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include PagyHelper, type: :view
   config.include AuthenticationHelper, type: :system
+  config.include ViewComponent::TestHelpers, type: :component
 end
 
 Shoulda::Matchers.configure do |config|

@@ -1,0 +1,6 @@
+<div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+  <h1 class="title">Mis Proyectos</h1>
+  <div class="columns is-mobile">
+    <%= render(ProjectComponent.with_collection(@projects, classes: "column is-half")) %>
+  </div>
+</div>

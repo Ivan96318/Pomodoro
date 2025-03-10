@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include DetectDevise
+  
   before_action :authorize
   before_action :set_container
 

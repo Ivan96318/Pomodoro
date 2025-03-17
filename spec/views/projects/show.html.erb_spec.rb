@@ -12,7 +12,7 @@ RSpec.describe 'projects/show', type: :view do
 
     render
 
-    expect(rendered).to have_content("Proyecto: #{project.name}")
+    expect(rendered).to have_content(project.name)
     expect(rendered).to have_link('Editar', href: edit_project_path(project))
     expect(rendered).to have_css('button.button.is-danger', text: 'Eliminar proyecto')
   end

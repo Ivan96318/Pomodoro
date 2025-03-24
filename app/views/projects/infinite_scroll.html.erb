@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "projects-page-#{@pagy.page}" do %>
+  <%= render @projects %>
+  
+  <% if @pagy.next %>
+    <%= render "next_page" %>
+  <% end %>
+<% end %>

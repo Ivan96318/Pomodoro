@@ -1,6 +1,9 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
   <h1 class="title">Mis Proyectos</h1>
-  <div class="columns is-mobile">
-    <%= render(ProjectComponent.with_collection(@projects, classes: "column is-half")) %>
-  </div>
 </div>
+
+<div class="is-flex is-flex-wrap-wrap mt-5" id="projects-container">
+  <%= render @projects %>
+</div>
+
+<%= render "next_page" %>

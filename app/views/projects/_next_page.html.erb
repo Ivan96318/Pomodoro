@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "projects-page-#{@pagy.next}", 
+  loading: :lazy, 
+  src: infinite_scroll_projects_path(page: @pagy.next),
+  target: "_top",
+  class: "is-flex is-flex-wrap-wrap" do %>
+  <span class="icon is-large pt-6 is-block mx-auto">
+    <i class="fa-solid fa-rotate-right fa-spin is-size-1"></i>
+  </span>
+<% end %>

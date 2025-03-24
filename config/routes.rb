@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
   root 'home#index'
   get 'sign_up', action: :new, controller: 'sign_up'
   post 'sign_up', action: :create, controller: 'sign_up'
@@ -14,6 +13,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :projects do
+    collection do
+      get :infinite_scroll
+    end
     resources :tickets, except: [:index]
   end
 end

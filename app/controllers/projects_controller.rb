@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    @pagy, @projects = pagy(Project.where(user_id: current_user.id).limit(15))
+    @pagy, @projects = pagy(current_user.projects.order(id: :desc), items: 10)
   end
   def new
     @new_project = Project.new
@@ -58,6 +58,10 @@ class ProjectsController < ApplicationController
         partial: "shared/turbo_flash", 
         locals: { message: "No se pudo eliminar el proyecto" })
     end
+  end
+
+  def infinite_scroll
+    @pagy, @projects = pagy(current_user.projects.order(id: :desc), items: 10, page: params[:page])
   end
 
   private

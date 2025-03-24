@@ -1,6 +1,16 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
   <h1 class="title">Mis Proyectos</h1>
-  <div class="columns is-mobile">
-    <%= render(ProjectComponent.with_collection(@projects, classes: "column is-half")) %>
-  </div>
 </div>
+  <%= turbo_frame_tag "projects_page_#{@pagy.page}" do %>
+    <div class="columns is-mobile is-multiline">
+      <%= render @projects %>
+    </div>
+    
+    <% if @pagy.next %>
+      <%= turbo_frame_tag "projects_page_#{@pagy.next}", src: projects_path(page: @pagy.next), loading: :lazy do %>
+        <span class="icon is-large">
+          <i class="fa-solid fa-rotate-right fa-spin is-size-1"></i>
+        </span>
+      <% end %>
+    <% end %>
+  <% end %>

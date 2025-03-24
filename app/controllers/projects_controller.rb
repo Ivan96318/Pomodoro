@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    @pagy, @projects = pagy(Project.where(user_id: current_user.id).limit(15))
+    @pagy, @projects = pagy(current_user.projects, items: 5)
   end
   def new
     @new_project = Project.new

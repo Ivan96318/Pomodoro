@@ -1,16 +1,15 @@
 <div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
   <h1 class="title">Mis Proyectos</h1>
 </div>
-  <%= turbo_frame_tag "projects_page_#{@pagy.page}" do %>
-    <div class="columns is-mobile is-multiline">
-      <%= render @projects %>
-    </div>
-    
-    <% if @pagy.next %>
-      <%= turbo_frame_tag "projects_page_#{@pagy.next}", src: projects_path(page: @pagy.next), loading: :lazy do %>
-        <span class="icon is-large">
-          <i class="fa-solid fa-rotate-right fa-spin is-size-1"></i>
-        </span>
-      <% end %>
-    <% end %>
-  <% end %>
+
+<div class="is-flex is-flex-wrap-wrap mt-5" id="projects">
+  <%= render @projects %>
+  
+</div>
+
+<%= tag.div data: { controller: "pagination", pagination_url_value: infinite_scroll_projects_path }, 
+  class: "has-text-centered mt-6" do %>
+  <span class="icon is-large" data-pagination-target="loading">
+    <i class="fa-solid fa-rotate-right fa-spin is-size-1"></i>
+  </span>
+<% end %>

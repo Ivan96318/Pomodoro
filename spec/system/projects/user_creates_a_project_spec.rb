@@ -11,14 +11,13 @@ RSpec.describe 'User creates a new project', type: :system do
 
   context 'when values are valid', js: true do
     it 'creates a new project' do
-      skip 'pasar este test para que se haga desde my projects'
-      user
-
       visit login_path
       fill_in 'session[email]', with: user.email
       fill_in 'session[password]', with: user.password
       click_button 'Iniciar sesión'
+      click_on 'Mis Proyectos'
       click_on 'Nuevo Proyecto'
+
       fill_in 'project[name]', with: 'Proyecto de prueba'
       fill_in 'project[description]', with: 'Descripcion de prueba'
       click_button 'Guardar'
@@ -30,13 +29,11 @@ RSpec.describe 'User creates a new project', type: :system do
 
   context 'when the name is missing', js: true do
     it 'shows an error in name field' do
-      skip 'pasar este test para que se haga desde my projects'
-      user
-
       visit login_path
       fill_in 'session[email]', with: user.email
       fill_in 'session[password]', with: user.password
       click_button 'Iniciar sesión'
+      click_on 'Mis Proyectos'
       click_on 'Nuevo Proyecto'
       fill_in 'project[description]', with: 'Descripcion de prueba'
       click_button 'Guardar'
@@ -47,13 +44,11 @@ RSpec.describe 'User creates a new project', type: :system do
 
   context 'when the description is missing' do
     it 'shows an error in description field' do
-      skip 'pasar este test para que se haga desde my projects'
-      user
-
       visit login_path
       fill_in 'session[email]', with: user.email
       fill_in 'session[password]', with: user.password
       click_button 'Iniciar sesión'
+      click_on 'Mis Proyectos'
       click_on 'Nuevo Proyecto'
       fill_in 'project[name]', with: 'Nombre de prueba'
       click_button 'Guardar'

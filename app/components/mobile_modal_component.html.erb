@@ -1,3 +1,43 @@
-<div class="modal-overlay" id="mobile-modal">
-  <div class="modal-container"></div>
+<div class="<%= css_classes %>" 
+  id="native-mobile-modal-component" 
+  data-controller="native-mobile-modal"
+  data-action="click->native-mobile-modal#closeOnOverlay keydown@window->native-mobile-modal#closeOnEscape">
+  <div class="native-modal-container"
+    data-native-mobile-modal-target="container"
+    data-action="touchstart->native-mobile-modal#handleTouchStart touchmove->native-mobile-modal#handleTouchMove touchend->native-mobile-modal#handleTouchEnd">
+    <div class="card native-mobile-modal-card">
+      <%# handle para drag (visual) %>
+      <div class="native-mobile-modal-handle"></div>
+
+      <%# header %>
+      <% if header || title %>
+        <header class="card-header native-mobile-modal-header">
+          <button class="native-mobile-modal-close"
+            data-action="click->native-mobile-modal#close"
+            type="button">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <% if header %>
+            <%= header %>
+          <% else %>
+            <p class="card-header-title is-centered has-text-weight-semibold">
+              <%= title %>
+            </p>
+          <% end %>
+        </header>
+      <% end %>
+
+      <%# content %>
+      <div class="card-content native-mobile-modal-content">
+        <%= content %>
+      </div>
+
+      <%# footer %>      
+      <% if footer %>
+        <footer class="card-footer native-mobile-modal-actions">
+          <%= footer %>
+        </footer>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -16,4 +16,12 @@ module ApplicationHelper
       ), &block
     end
   end
+
+  def link_to_sheet_modal(path, text, **params, &block)
+    link_to text, path, params.merge!(
+      data: {
+        action: "click->bottom-sheet-modal#show"
+      }
+    )
+  end
 end

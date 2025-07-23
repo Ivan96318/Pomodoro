@@ -1,11 +1,15 @@
-<div class="bottom-sheet-modal" data-controller="bottom-sheet-modal">
+<div class="bottom-sheet-modal" data-bottom-sheet-modal-target="modal">
   <div class="sheet-header">
-    <div class="drag-handle"></div>
-    <button class="close-btn">
+    <div class="drag-handle" 
+      data-bottom-sheet-modal-target="drag_handle"
+      data-action="mousedown->bottom-sheet-modal#startDragging
+        mousemove->bottom-sheet-modal#drag
+        mouseup->bottom-sheet-modal#stopDragging"></div>
+    <button class="close-btn" data-bottom-sheet-modal-target="btn_close">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
   <div class="sheet-content">
-    <%= turbo_frame_tag "sheet-content" %>
+    <%= turbo_frame_tag "modal-sheet-content" %>
   </div>
 </div>

@@ -13,7 +13,7 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <div class="<%= "container" if @container %> <%= "is-fluid px-3" if browser.device.mobile? %> mt-5">
+    <div class="<%= "container" if @container %> <%= "is-fluid px-3" if browser.device.mobile? %> mt-5" data-controller="bottom-sheet-modal">
       <%= render "shared/flash" %>
       <div id="turbo-flash-message"></div>
       <%= yield %>

@@ -20,7 +20,8 @@ module ApplicationHelper
   def link_to_sheet_modal(path, text, **params, &block)
     link_to text, path, params.merge!(
       data: {
-        action: "click->bottom-sheet-modal#show"
+        action: "click->bottom-sheet-modal#show",
+        turbo_frame: "modal-sheet-content"
       }
     )
   end

@@ -1,11 +1,9 @@
 <div class="bottom-sheet-modal" data-bottom-sheet-modal-target="modal">
   <div class="sheet-header">
-    <div class="drag-handle" 
-      data-bottom-sheet-modal-target="drag_handle"
-      data-action="mousedown->bottom-sheet-modal#startDragging
-        mousemove->bottom-sheet-modal#drag
-        mouseup->bottom-sheet-modal#stopDragging"></div>
-    <button class="close-btn" data-bottom-sheet-modal-target="btn_close">
+    <div class="drag-handle"
+      data-action="click->bottom-sheet-modal#startDragging touchstart->bottom-sheet-modal#startDragging"></div>
+    <button class="close-btn"
+      data-action="click->bottom-sheet-modal#hide">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>

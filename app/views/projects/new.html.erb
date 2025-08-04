@@ -1,8 +1,17 @@
-<%= turbo_frame_tag "modal-sheet-content" do %>
-  <header class="modal-card-head">
-    <h2 class="is-size-2">Nuevo proyecto</h2>
-  </header>
-  <section class="modal-card-body">
-    <%= render "form", new_project: @new_project %>
-  </section>
+<%= turbo_frame_tag "modal" do %>
+  <%= turbo_frame_tag "modal-sheet-content" do %>
+    <% if browser.device.mobile? %>
+      <header class="px-5">
+        <h2 class="is-size-2">Nuevo proyecto</h2>
+      </header>
+    <% else %>
+      <header class="modal-card-head">
+        <h2 class="is-size-2">Nuevo proyecto</h2>
+      </header>
+    <% end %>
+    
+    <section class="modal-card-body">
+      <%= render "form", new_project: @new_project %>
+    </section>
+  <% end %>
 <% end %>

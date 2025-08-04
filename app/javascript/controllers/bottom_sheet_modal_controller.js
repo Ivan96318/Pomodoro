@@ -6,18 +6,17 @@ export default class extends Controller {
   connect() {
     console.log("Connected")
     this.isDragging = false
-    this.startY;
-    this.startBottom;
+    this.startY = null;
+    this.startBottom = null;
   }
 
   show() {
     this.modalTarget.style.display = "block"
-    this.modalTarget.style.bottom = 0
+    this.modalTarget.style.bottom = "0px"
     document.body.style.overflow = "hidden"
   }
 
   hide() {
-    console.log("hide method")
     this.modalTarget.style.display = "none"
     this.modalTarget.style.bottom = "-100%"
     document.body.style.overflow = "auto"
@@ -27,20 +26,19 @@ export default class extends Controller {
     console.log("Start dragging")
     event.preventDefault()
     this.isDragging = true
-    this.startY = event.clientY
+    this.startY = event.touches[0].clientY
     this.startBottom = parseInt(getComputedStyle(this.modalTarget).bottom)
 
-    document.addEventListener("mousemove", this.drag);
-    document.addEventListener("mouseup", this.stopDragging);
+    document.addEventListener("touchmove", this.drag.bind(this), { passive: false });
+    document.addEventListener("touchend", this.stopDragging.bind(this));
   }
 
   drag(event) {
     console.log("dragging")
     event.preventDefault()
-    if (!this.isDragging)
-      return
+    if (!this.isDragging) return
 
-    const deltaY = event.clientY - this.startY
+    const deltaY = event.touches[0].clientY - this.startY
     this.modalTarget.style.bottom = Math.max(this.startBottom - deltaY, 0) + "px"
   }
 
@@ -48,6 +46,8 @@ export default class extends Controller {
     console.log("Stop dragging")
     event.preventDefault()
     this.isDragging = false
+    document.removeEventListener("touchmove", this.drag.bind(this));
+    document.removeEventListener("touchend", this.stopDragging.bind(this));
     this.startY = null
     this.startBottom = null
   }

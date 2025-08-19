@@ -11,16 +11,24 @@
       </div>
     </div>
     <footer class="card-footer">
-      <%= link_to "Editar", "#", class: "card-footer-item has-background-success-light" %>
-      <%= link_to "Eliminar", "#",
-        method: :delete,
-        class: "card-footer-item has-background-danger-light",
-        form: {
-          data: {
-            turbo: true,
-            turbo_confirm: "¿Estas seguro?"
-          }
-        } %>
+      <% if @edit_path.present? %>
+        <%#= link_to "Editar", @edit_path, class: "card-footer-item has-background-success-light" %>
+        <%= link_to_sheet_modal @edit_path, class: "card-footer-item has-background-success-light" do %>
+          Editar
+        <% end %>
+      <% end %>
+      
+      <% if @delete_path.present? %>
+        <%= link_to "Eliminar", @delete_path,
+          method: :delete,
+          class: "card-footer-item has-background-danger-light",
+          form: {
+            data: {
+              turbo: true,
+              turbo_confirm: "¿Estas seguro?"
+            }
+          } %>
+      <% end %>
     </footer>
   </div>
 </div>

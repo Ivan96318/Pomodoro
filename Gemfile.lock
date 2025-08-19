@@ -87,7 +87,7 @@ GEM
     builder (3.2.4)
     bulma-rails (0.9.4)
       sassc (~> 2.0)
-    byebug (9.1.0)
+    byebug (12.0.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -148,7 +148,6 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
-    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
@@ -280,10 +279,9 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    view_component (3.21.0)
-      activesupport (>= 5.2.0, < 8.1)
-      concurrent-ruby (~> 1.0)
-      method_source (~> 1.0)
+    view_component (4.0.2)
+      activesupport (>= 7.1.0, < 8.1)
+      concurrent-ruby (~> 1)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -304,13 +302,14 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-24
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   browser (~> 5.3, >= 5.3.1)
   bulma-rails (~> 0.9.4)
-  byebug (~> 9.0, >= 9.0.6)
+  byebug (~> 12.0)
   capybara
   database_cleaner (~> 2.0, >= 2.0.2)
   debug
@@ -335,12 +334,12 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
-  view_component (~> 3.21)
+  view_component (~> 4.0, >= 4.0.2)
   web-console
   webdrivers (~> 5.3, >= 5.3.1)
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.9p265
 
 BUNDLED WITH
    2.4.3

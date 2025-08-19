@@ -1,2 +1,16 @@
-<%= render ProjectComponent.new(project: project, classes: "w-50 p-1") %>
-
+<%= render ProjectComponent.new(
+  project: project,
+  classes: "w-50 p-1") do |component| %>
+  <% component.with_footer do %>
+    <%= link_to_modal "Editar", edit_project_path(project), class: "card-footer-item button is-success is-light" %>
+    <%= button_to "Eliminar", project_path(project),
+      method: :delete,
+      class: "card-footer-item button is-danger is-light",
+      form: {
+        data: {
+          turbo: true,
+          turbo_confirm: "¿Estas seguro?"
+        }
+      } %>
+  <% end %>
+<% end %>

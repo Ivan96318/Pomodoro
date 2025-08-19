@@ -22,7 +22,7 @@ module ApplicationHelper
     link_to path, params.merge!(
       data: {
         action: "click->bottom-sheet-modal#show",
-        turbo_frame: "modal-sheet-content",
+        turbo_frame: "modal",
       }
     ), &block
   end

@@ -1,2 +1,6 @@
-<%= render ProjectComponent.new(project: project, classes: "w-50 p-1") %>
+<%= render ProjectComponent.new(
+  project: project, 
+  edit_path: edit_project_path(project), 
+  delete_path: project_path(project), 
+  classes: "w-50 p-1") %>
 

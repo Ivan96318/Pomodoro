@@ -13,20 +13,12 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <div class="<%= "container" if @container %> <%= "is-fluid px-3" if browser.device.mobile? %> mt-5" data-controller="bottom-sheet-modal">
+    <div class="<%= "container" if @container %> <%= "is-fluid px-3" if browser.device.mobile? %> mt-5" data-controller="bottom-sheet-modal modal">
       <%= render "shared/flash" %>
       <div id="turbo-flash-message"></div>
       <%= yield %>
 
-      <div class="modal" id="turbo-modal" data-controller="modal">
-        <div class="modal-background" data-action="click->modal#close"></div>
-        <div class="modal-card">
-          <%= turbo_frame_tag "modal" %>
-        </div>
-        <button class="modal-close is-large" aria-label="close" data-action="modal#close"></button>
-      </div>
-
-      <%= render "shared/bottom_sheet_modal" %>
+      <%= render "shared/modal" %>
     </div>
   </body>
 </html>

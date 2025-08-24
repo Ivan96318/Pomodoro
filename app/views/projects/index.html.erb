@@ -1,8 +1,6 @@
 <div class="is-flex is-justify-content-space-between is-align-items-center">
   <h1 class="is-size-1">Mis Proyectos</h1>
-  <%= link_to_modal new_project_path, class: "button is-info" do %>
-    Nuevo Proyecto
-  <% end %>
+  <%= link_to_modal "Nuevo Proyecto", new_project_path, class: "button is-info" %>
 </div>
 
 <div class="card mt-6 p-5">
@@ -24,9 +22,7 @@
           <th><%= project.project_type %></th>
           <th><%= project.created_at %></th>
           <th>
-            <%= link_to_modal edit_project_path(project), class: "button" do %>
-              ...
-            <% end %>
+            <%= link_to_modal "...", edit_project_path(project), class: "button" %>
           </th>
         </tr>    
       <% end %>

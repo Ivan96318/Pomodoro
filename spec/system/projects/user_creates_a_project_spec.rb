@@ -5,10 +5,6 @@ require 'rails_helper'
 RSpec.describe 'User creates a new project', type: :system do
   let(:user) { create(:user) }
 
-  before do
-    driven_by(:selenium_chrome_headless)
-  end
-
   context 'when values are valid', js: true do
     it 'creates a new project' do
       visit login_path

@@ -1,54 +1,54 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["modal"]
-  
+  get modal() {
+    return document.getElementById("turbo-modal");
+  }
+
   connect() {
-    console.log("Connected")
-    this.isDragging = false
+    this.isDragging = false;
     this.startY = null;
     this.startBottom = null;
   }
 
   show() {
-    this.modalTarget.style.display = "block"
-    this.modalTarget.style.bottom = "0px"
-    document.body.style.overflow = "hidden"
+    this.modal.style.display = "block";
+    this.modal.style.bottom = "0px";
+    document.body.style.overflow = "hidden";
   }
 
   hide() {
-    this.modalTarget.style.display = "none"
-    this.modalTarget.style.bottom = "-100%"
-    document.body.style.overflow = "auto"
+    this.modal.style.display = "none";
+    this.modal.style.bottom = "-100%";
+    document.body.style.overflow = "auto";
   }
 
   startDragging(event) {
-    console.log("Start dragging")
-    event.preventDefault()
-    this.isDragging = true
-    this.startY = event.touches[0].clientY
-    this.startBottom = parseInt(getComputedStyle(this.modalTarget).bottom)
+    event.preventDefault();
+    this.isDragging = true;
+    this.startY = event.touches[0].clientY;
+    this.startBottom = parseInt(getComputedStyle(this.modal).bottom);
 
-    document.addEventListener("touchmove", this.drag.bind(this), { passive: false });
+    document.addEventListener("touchmove", this.drag.bind(this), {
+      passive: false,
+    });
     document.addEventListener("touchend", this.stopDragging.bind(this));
   }
 
   drag(event) {
-    console.log("dragging")
-    event.preventDefault()
-    if (!this.isDragging) return
+    event.preventDefault();
+    if (!this.isDragging) return;
 
-    const deltaY = event.touches[0].clientY - this.startY
-    this.modalTarget.style.bottom = Math.max(this.startBottom - deltaY, 0) + "px"
+    const deltaY = event.touches[0].clientY - this.startY;
+    this.modal.style.bottom = Math.max(this.startBottom - deltaY, 0) + "px";
   }
 
   stopDragging(event) {
-    console.log("Stop dragging")
-    event.preventDefault()
-    this.isDragging = false
+    event.preventDefault();
+    this.isDragging = false;
     document.removeEventListener("touchmove", this.drag.bind(this));
     document.removeEventListener("touchend", this.stopDragging.bind(this));
-    this.startY = null
-    this.startBottom = null
+    this.startY = null;
+    this.startBottom = null;
   }
 }

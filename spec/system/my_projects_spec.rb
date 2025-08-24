@@ -51,5 +51,13 @@ RSpec.describe "User visits my projects", type: :system do
         expect(page).to have_content("Proyecto eliminado correctamente")
       end
     end
-  end 
+  end
+
+  def login_as(user)
+    visit login_path
+    fill_in "session[email]", with: user.email
+    fill_in "session[password]", with: user.password
+    click_button "Iniciar sesión"
+    expect(page).to have_content("Bienvenido")
+  end
 end

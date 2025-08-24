@@ -13,7 +13,6 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'support/pagy_helper'
-require 'support/authentication_helper'
 require 'rack_session_access/capybara'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -39,6 +38,18 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+Capybara.register_driver :selenium_chrome_headless_custom do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless=new') # usa el nuevo modo headless más estable
+  options.add_argument('--disable-gpu')
+  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--no-sandbox')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -64,7 +75,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome_headless
+    driven_by :selenium_chrome_headless_custom
   end
   # config.use_transactional_fixtures = true
   # You can uncomment this line to turn off ActiveRecord support entirely.
@@ -90,7 +101,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include PagyHelper, type: :view
-  config.include AuthenticationHelper, type: :system
   config.include ViewComponent::TestHelpers, type: :component
 end
 

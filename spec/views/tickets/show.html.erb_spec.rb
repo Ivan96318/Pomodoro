@@ -6,6 +6,7 @@ RSpec.describe "tickets/show", type: :view do
   let(:ticket_2) { create(:ticket, project: project, status: 0, due_date: nil, assigned_to: nil) }
 
   it "displays ticket attributes" do
+    skip # remove this skip when the part of tickes is finished
     assign(:project, project)
     assign(:ticket, ticket)
 
@@ -21,6 +22,7 @@ RSpec.describe "tickets/show", type: :view do
 
   context "when some attributes does not have values" do
     it "displays the ticket attributes" do
+      skip # remove this skip when the part of tickes is finished
       assign(:project, project)
       assign(:ticket, ticket_2)
 

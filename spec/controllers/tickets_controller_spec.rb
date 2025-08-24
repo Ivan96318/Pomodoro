@@ -3,9 +3,11 @@ require "rails_helper"
 RSpec.describe TicketsController, type: :controller do
   let(:project) { create(:project) }
   let(:ticket) { create(:ticket, project: project) }
+  let(:user) { create(:user) }
 
   describe "GET #show" do
     it "renders the show template" do
+      allow(controller).to receive(:current_user).and_return(user)
       get :show, params: { project_id: project.id, id: ticket.id }
 
       expect(response).to render_template(:show)
@@ -14,6 +16,7 @@ RSpec.describe TicketsController, type: :controller do
 
   describe "GET #new" do
     it "renders the new template" do
+      allow(controller).to receive(:current_user).and_return(user)
       get :new, params: { project_id: project.id }
 
       expect(response).to render_template(:new)
@@ -21,6 +24,10 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   describe "POST #create" do
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
     context "with valid parameters" do
       it "creates a new ticket" do
         ticket_params = {
@@ -51,6 +58,7 @@ RSpec.describe TicketsController, type: :controller do
 
   describe "GET #edit" do
     it "renders the edit template" do
+      allow(controller).to receive(:current_user).and_return(user)
       get :edit, params: { project_id: project.id, id: ticket.id }
 
       expect(response).to render_template(:edit)
@@ -58,6 +66,10 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   describe "PATCH #update" do
+    before do
+      allow(controller).to receive(:current_user).and_return(user)
+    end
+
     context "with valid parameters" do
       it "updates the tickt" do
         ticket_params = {
@@ -90,6 +102,7 @@ RSpec.describe TicketsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the ticket" do
+      allow(controller).to receive(:current_user).and_return(user)
       delete :destroy, params: { project_id: project.id, id: ticket.id }
 
       expect(Ticket.count).to eq(0)

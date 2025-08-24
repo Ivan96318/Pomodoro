@@ -3,27 +3,18 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def link_to_modal(path, **params, &block)
-    if browser.device.mobile?
-      # link_to path, &block
-      link_to_sheet_modal(path, **params, &block)
-    else
-      link_to path, params.merge(
-        data: {
-          controller: 'modal',
-          action: 'modal#show',
-          turbo_frame: 'modal'
-        }
-      ), &block
-    end
+  def link_to_modal(name, path, **params)
+    link_to name, path, params.merge!(
+      data: {
+        action: modal_turbo_action,
+        turbo_frame: "modal"
+      }
+    )
   end
 
-  def link_to_sheet_modal(path, **params, &block)
-    link_to path, params.merge!(
-      data: {
-        action: "click->bottom-sheet-modal#show",
-        turbo_frame: "modal-sheet-content",
-      }
-    ), &block
+  private
+
+  def modal_turbo_action
+    browser.device.mobile? ? "bottom-sheet-modal#show" : "modal#show"
   end
 end

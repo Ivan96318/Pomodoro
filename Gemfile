@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.3'
+ruby '3.2.9'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.0'
@@ -60,11 +60,11 @@ gem 'email_validator', '~> 1.6'
 gem 'browser', '~> 5.3', '>= 5.3.1'
 
 gem 'pagy', '~> 9.0'
-gem 'view_component', '~> 3.21'
+gem 'view_component', '~> 4.0', '>= 4.0.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'byebug', '~> 9.0', '>= 9.0.6'
+  gem 'byebug', '~> 12.0'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'rspec-rails', '~> 6.0', '>= 6.0.3'

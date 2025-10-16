@@ -11,7 +11,7 @@ require 'rspec/rails'
 require 'support/factory_bot'
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'database_cleaner'
+require 'database_cleaner/active_record'
 require 'support/pagy_helper'
 require 'rack_session_access/capybara'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -63,7 +63,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:deletion)
   end
 
   config.before(:each) do

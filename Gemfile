@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.9'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.2.0'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -64,8 +64,7 @@ gem 'view_component', '~> 4.0', '>= 4.0.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'byebug', '~> 12.0'
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'debug', '~> 1.11', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
 end
@@ -84,7 +83,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
-  gem 'database_cleaner', '~> 2.0', '>= 2.0.2'
+  gem 'database_cleaner-active_record', '~> 2.2', '>= 2.2.2'
   gem 'rack_session_access'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'selenium-webdriver'

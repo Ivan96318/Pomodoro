@@ -1,14 +1,19 @@
 <%= turbo_frame_tag "modal" do %>
-  <header class="modal-card-head">
-    <h2 class="modal-card-title is-size-2">Editar proyecto <%= @project.name %></h2>
-    <%= button_to "Eliminar", project_path(@project), 
-      method: :delete,
-      class: "button is-text has-text-danger",
-      form: {
-        data: {
-          turbo: true,
-          turbo_confirm: "¿Estas seguro?",
-          action: "turbo:submit-end->modal#closeOnSubmitSuccess" }} %>
+  <header class="modal-card-head <%= "has-background-white" if browser.device.mobile? %>">
+    <% if browser.device.mobile? %>
+      <h4 class="modal-card-title is-size-4"><%= truncate("Editar #{@project.name}", length: 30, separator: " ") %></h4>
+    <% else %>
+      <h2 class="modal-card-title is-size-2"><%= truncate("Editar proyecto #{@project.name}", length: 35, separator: " ") %></h2>
+
+      <%= button_to "Eliminar", project_path(@project), 
+        method: :delete,
+        class: "button is-text has-text-danger",
+        form: {
+          data: {
+            turbo: true,
+            turbo_confirm: "¿Estas seguro?",
+            action: "turbo:submit-end->modal#closeOnSubmitSuccess" }} %>
+    <% end %>
   </header>
 
   <div class="card p-5">
